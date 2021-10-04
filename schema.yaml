@@ -1,0 +1,150 @@
+# yaml-language-server: $schema=https://json-schema.org/draft/2020-12/schema
+$id: "https://raw.githubusercontent.com/mtoohey31/carbon-cv/main/schema.yaml"
+additionalProperties: false
+title: CV
+description: A CV to be loaded by carbon-cv
+type: object
+properties:
+  about:
+    type: object
+    additionalProperties: false
+    properties:
+      name:
+        type: string
+        description: Name of person
+      title:
+        type: string
+        description: Job/position title
+      tagline:
+        type: string
+        description: Personal brand tagline
+      image:
+        type: string
+        description: Path to image, not currently implemented
+      contact:
+        type: array
+        uniqueItems: true
+        exclusiveMinimum: 0
+        items:
+          type: object
+          additionalProperties: false
+          properties:
+            label:
+              type: string
+              description: What to label the contact information as
+            text:
+              type: string
+              description: What to display as the contact information
+            link:
+              type: string
+              description: What link to include on the text
+            disabled:
+              type: boolean
+              description: Whether or not to hide the item
+          required:
+          - label
+          - text
+      lists:
+        type: array
+        uniqueItems: true
+        exclusiveMinimum: 0
+        items:
+          type: object
+          additionalProperties: false
+          properties:
+            label:
+              type: string
+              description: What to label the list as
+            items:
+              type: array
+              description: The objects to include in the list
+              items:
+                type: string
+                description: An object to include in the list
+      summary:
+        type: string
+        description: A short summary paragraph, or "objective"
+    required:
+    - name
+  sections:
+    type: array
+    description: The sections to include in the CV
+    uniqueItems: true
+    exclusiveMinimum: 0
+    items:
+      type: object
+      description: A CV section
+      additionalProperties: false
+      properties:
+        title:
+          type: string
+          description: The title of the section
+        items:
+          type: array
+          description: The items to include in this section
+          uniqueItems: true
+          exclusiveMinimum: 0
+          items:
+            type: object
+            additionalProperties: false
+            properties:
+              title:
+                type: string
+                description: The item title
+              subtitle:
+                type: string
+                description: The item title
+              date:
+                anyOf:
+                - type: string
+                  description: The literal date string to display
+                - type: object
+                  description: The literal start start and option al end date strings
+                    to display
+                  additionalProperties: false
+                  properties:
+                    start:
+                      anyOf:
+                        - type: number
+                          description: The start year
+                        - type: string
+                          description: The literal start date string to display
+                    end:
+                      anyOf:
+                        - type: number
+                          description: The end year
+                        - type: string
+                          description: The literal end date string to display
+                  required:
+                  - start
+                description: The date/time period of this item
+              disabled:
+                type: boolean
+                description: Whether or not to hide the item
+              summary:
+                type: string
+                description: A paragraph summary to display for the item
+              points:
+                type: array
+                description: Multiple points to display for the item
+                uniqueItems: true
+                exclusiveMinimum: 0
+                items:
+                  type: string
+                  description: The point to display
+            anyOf:
+            - required:
+              - title
+              - summary
+            - required:
+              - title
+              - points
+      required:
+      - title
+      - items
+  references:
+    type: string
+    description: The message to display regarding references
+required:
+- about
+- sections

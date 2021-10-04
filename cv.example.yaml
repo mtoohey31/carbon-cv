@@ -1,0 +1,22 @@
+# yaml-language-server: $schema=./schema.yaml
+about:
+  name: Mario
+  title: Plumber
+  contact:
+    - label: Address
+      text: Mushroom Kingdom
+  lists:
+    - label: Skills
+      items:
+        - Welding
+        - Soldering
+        - Basic Carpentry
+sections:
+  - title: Experience
+    items:
+      - title: Super Mario 64
+        date:
+          start: 1997
+          end: Present
+        points:
+          - A video game, originally for the Nintendo 64.
