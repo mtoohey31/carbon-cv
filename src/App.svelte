@@ -1,17 +1,13 @@
 <script lang="ts">
-  import cv from "../cv.yaml";
-  import { Link, UnorderedList, ListItem } from "carbon-components-svelte";
+  import type { CV } from "./lib/schema-type";
+  // @ts-ignore
+  import cvYAML from "../cv.yaml";
+  const cv = cvYAML as CV;
   import Marked from "marked";
 
-  function checkEnabled(object) {
+  function checkEnabled(object: { disabled?: boolean }) {
     return !object.disabled;
   }
-
-  function checkNonEmpty(object) {
-    return object.items.filter(checkEnabled).length !== 0;
-  }
-  import "../node_modules/carbon-components-svelte/css/white.css";
-  /* import "../node_modules/carbon-components-svelte/css/g90.css"; */
 </script>
 
 <svelte:head>
@@ -52,7 +48,7 @@
     {cv.about.summary}
     <br />
   {/if}
-  {#each cv.sections.filter(checkEnabled).filter(checkNonEmpty) as section}
+  {#each cv.sections.filter((o) => o.items.filter(checkEnabled).length !== 0) as section}
     <h3 style="padding-top:15px" id={section.title}>{section.title}</h3>
     <hr style="margin-bottom:0px" />
     {#each section.items.filter(checkEnabled) as item}

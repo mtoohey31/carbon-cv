@@ -61,6 +61,8 @@ properties:
               items:
                 type: string
                 description: An object to include in the list
+            disabled:
+              type: boolean
       summary:
         type: string
         description: A short summary paragraph, or "objective"
