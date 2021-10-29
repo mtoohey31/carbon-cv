@@ -18,5 +18,5 @@ sections:
         date:
           start: 1997
           end: Present
-        points:
+        body: >
           - A video game, originally for the Nintendo 64.

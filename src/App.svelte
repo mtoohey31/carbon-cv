@@ -1,6 +1,7 @@
 <script lang="ts">
   import cv from "../cv.yaml";
   import { Link, UnorderedList, ListItem } from "carbon-components-svelte";
+  import Marked from "marked";
 
   function checkEnabled(object) {
     return !object.disabled;
@@ -84,15 +85,8 @@
           {/if}
         </div>
       </div>
-      {#if typeof item.summary !== "undefined"}
-        <div style="padding-top:6px">{item.summary}</div>
-      {/if}
-      {#if typeof item.points !== "undefined"}
-        <UnorderedList style="padding-top:6px">
-          {#each item.points as point}
-            <ListItem>{point}</ListItem>
-          {/each}
-        </UnorderedList>
+      {#if typeof item.body !== "undefined"}
+        <div style="padding-top:6px">{@html Marked(item.body)}</div>
       {/if}
     {/each}
   {/each}

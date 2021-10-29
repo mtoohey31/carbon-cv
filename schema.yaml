@@ -121,24 +121,11 @@ properties:
               disabled:
                 type: boolean
                 description: Whether or not to hide the item
-              summary:
+              body:
                 type: string
-                description: A paragraph summary to display for the item
-              points:
-                type: array
-                description: Multiple points to display for the item
-                uniqueItems: true
-                exclusiveMinimum: 0
-                items:
-                  type: string
-                  description: The point to display
-            anyOf:
-            - required:
-              - title
-              - summary
-            - required:
-              - title
-              - points
+                description: Markdown to display as the item's body
+            required:
+            - title
       required:
       - title
       - items
