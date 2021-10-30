@@ -1,0 +1,15 @@
+name: Lint with Prettier
+on:
+  push:
+    branches: ["**"]
+jobs:
+  lint:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v2
+      - name: Set up Node.js
+        uses: actions/setup-node@v2.4.1
+      - name: Install Prettier
+        run: npm i -g prettier
+      - name: Lint with Prettier
+        run: prettier -c .
