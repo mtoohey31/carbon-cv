@@ -16,18 +16,23 @@
     "@tsconfig/svelte": "^2.0.1",
     "@types/marked": "^3.0.2",
     "@types/puppeteer-core": "^5.4.0",
-    "js-yaml": "^4.1.0",
+    "autoprefixer": "^10.4.0",
     "json-schema-to-typescript": "^10.1.5",
     "pdf2json": "^1.2.5",
+    "postcss": "^8.3.11",
     "puppeteer-core": "^10.4.0",
     "svelte": "^3.37.0",
     "svelte-check": "^2.1.0",
     "svelte-preprocess": "^4.7.2",
+    "tailwindcss": "^2.2.19",
     "tslib": "^2.2.0",
     "typescript": "^4.3.2",
     "vite": "^2.6.0"
   },
   "dependencies": {
+    "@fontsource/ibm-plex-sans": "^4.5.1",
+    "@fontsource/jetbrains-mono": "^4.5.0",
+    "js-yaml": "^4.1.0",
     "marked": "^3.0.8"
   }
 }

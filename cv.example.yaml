@@ -3,8 +3,7 @@ about:
   name: Mario
   title: Plumber
   contact:
-    - label: Address
-      text: Mushroom Kingdom
+    - "Address: Mushroom Kingdom"
   lists:
     - label: Skills
       items:

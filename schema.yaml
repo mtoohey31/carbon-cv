@@ -18,32 +18,12 @@ properties:
       tagline:
         type: string
         description: Personal brand tagline
-      image:
-        type: string
-        description: Path to image, not currently implemented
       contact:
         type: array
         uniqueItems: true
         exclusiveMinimum: 0
         items:
-          type: object
-          additionalProperties: false
-          properties:
-            label:
-              type: string
-              description: What to label the contact information as
-            text:
-              type: string
-              description: What to display as the contact information
-            link:
-              type: string
-              description: What link to include on the text
-            disabled:
-              type: boolean
-              description: Whether or not to hide the item
-          required:
-          - label
-          - text
+          type: string
       lists:
         type: array
         uniqueItems: true
