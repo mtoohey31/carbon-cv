@@ -47,7 +47,7 @@ properties:
         type: string
         description: A short summary paragraph, or "objective"
     required:
-    - name
+      - name
   sections:
     type: array
     description: The sections to include in the CV
@@ -78,27 +78,28 @@ properties:
                 description: The item title
               date:
                 anyOf:
-                - type: string
-                  description: The literal date string to display
-                - type: object
-                  description: The literal start start and option al end date strings
-                    to display
-                  additionalProperties: false
-                  properties:
-                    start:
-                      anyOf:
-                        - type: number
-                          description: The start year
-                        - type: string
-                          description: The literal start date string to display
-                    end:
-                      anyOf:
-                        - type: number
-                          description: The end year
-                        - type: string
-                          description: The literal end date string to display
-                  required:
-                  - start
+                  - type: string
+                    description: The literal date string to display
+                  - type: object
+                    description:
+                      The literal start start and option al end date strings
+                      to display
+                    additionalProperties: false
+                    properties:
+                      start:
+                        anyOf:
+                          - type: number
+                            description: The start year
+                          - type: string
+                            description: The literal start date string to display
+                      end:
+                        anyOf:
+                          - type: number
+                            description: The end year
+                          - type: string
+                            description: The literal end date string to display
+                    required:
+                      - start
                 description: The date/time period of this item
               disabled:
                 type: boolean
@@ -107,13 +108,13 @@ properties:
                 type: string
                 description: Markdown to display as the item's body
             required:
-            - title
+              - title
       required:
-      - title
-      - items
+        - title
+        - items
   references:
     type: string
     description: The message to display regarding references
 required:
-- about
-- sections
+  - about
+  - sections
