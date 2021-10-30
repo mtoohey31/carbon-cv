@@ -7,13 +7,13 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v2
-      - name: Set up brave
-        run: |
-          sudo apt install apt-transport-https curl
-          sudo curl -fsSLo /usr/share/keyrings/brave-browser-archive-keyring.gpg https://brave-browser-apt-release.s3.brave.com/brave-browser-archive-keyring.gpg
-          echo "deb [signed-by=/usr/share/keyrings/brave-browser-archive-keyring.gpg arch=amd64] https://brave-browser-apt-release.s3.brave.com/ stable main"|sudo tee /etc/apt/sources.list.d/brave-browser-release.list
-          sudo apt update
-          sudo apt install brave-browser
+      # - name: Set up brave
+      #   run: |
+      #     sudo apt install apt-transport-https curl
+      #     sudo curl -fsSLo /usr/share/keyrings/brave-browser-archive-keyring.gpg https://brave-browser-apt-release.s3.brave.com/brave-browser-archive-keyring.gpg
+      #     echo "deb [signed-by=/usr/share/keyrings/brave-browser-archive-keyring.gpg arch=amd64] https://brave-browser-apt-release.s3.brave.com/ stable main"|sudo tee /etc/apt/sources.list.d/brave-browser-release.list
+      #     sudo apt update
+      #     sudo apt install brave-browser
       - name: Set up pnpm
         uses: pnpm/action-setup@v2.0.1
         with:
@@ -23,7 +23,8 @@ jobs:
         run: mv cv.example.yaml cv.yaml
       - name: Build project with pnpm
         run: pnpm run build
-      - name: Build PDF
-        run: pnpm build-pdf
-      - name: Build HTML
-        run: pnpm build-html
+      # TODO: get this working
+      # - name: Build PDF
+      #   run: pnpm build-pdf
+      # - name: Build HTML
+      #   run: pnpm build-html
