@@ -1,6 +1,5 @@
 <script lang="ts">
-  import type { CV } from "./lib/schema-type";
-  // @ts-ignore
+  import type { CV } from "../types/generated/schema-type";
   import cvYAML from "../cv.yaml";
   const cv = cvYAML as CV;
   import Marked from "marked";
