@@ -45,10 +45,10 @@
   {#each section.items.filter(checkEnabled) as item}
     <div class="pt-2 flex flex-wrap justify-between gap-1">
       <h3 class="inline marked" style="margin-bottom: -2px;" id={item.title}>
-      {@html Marked(item.title)}
+        {@html Marked(item.title)}
       </h3>
       {#if typeof item.subtitle !== "undefined"}
-      <strong class="marked mt-auto">- {@html Marked(item.subtitle)}</strong>
+        <strong class="marked mt-auto">- {@html Marked(item.subtitle)}</strong>
       {/if}
       <div class="flex-grow" />
       <strong class="mt-auto">
