@@ -1,6 +1,6 @@
 # Carbon CV
 
-A CV template written in Svelte using [`carbon-components-svelte`](https://github.com/carbon-design-system/carbon-components-svelte) and configured in YAML.
+A CV template written in Svelte and configured in YAML.
 
 ![screenshot](https://user-images.githubusercontent.com/36740602/135888350-847e8cb4-26c5-4278-aae1-03efc3d94321.png)
 
