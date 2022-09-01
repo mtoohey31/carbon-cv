@@ -8,7 +8,8 @@
     "build-pdf": "\"$npm_node_execpath\" scripts/compile-schema.js && node scripts/build-pdf.js",
     "build-html": "\"$npm_node_execpath\" scripts/compile-schema.js && node scripts/build-html.js",
     "serve": "vite preview",
-    "check": "svelte-check --tsconfig ./tsconfig.json"
+    "check": "svelte-check --tsconfig ./tsconfig.json",
+    "license-check": "license-checker --summary"
   },
   "devDependencies": {
     "@rollup/plugin-yaml": "^3.1.0",
@@ -18,6 +19,7 @@
     "@types/puppeteer-core": "^5.4.0",
     "autoprefixer": "^10.4.0",
     "json-schema-to-typescript": "^10.1.5",
+    "license-checker": "^25.0.1",
     "pdf2json": "^1.2.5",
     "postcss": "^8.3.11",
     "puppeteer-core": "^10.4.0",
@@ -33,6 +35,7 @@
     "@fontsource/ibm-plex-sans": "^4.5.1",
     "@fontsource/jetbrains-mono": "^4.5.0",
     "js-yaml": "^4.1.0",
-    "marked": "^3.0.8"
+    "marked": "^3.0.8",
+    "rollup": "^1.20.0 || ^2.0.0"
   }
 }
