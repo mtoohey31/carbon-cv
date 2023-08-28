@@ -2,7 +2,7 @@
   import type { CV } from "../types/generated/schema-type";
   import cvYAML from "../cv.yaml";
   const cv = cvYAML as CV;
-  import Marked from "marked";
+  import { marked } from "marked";
 
   function checkEnabled(object: { disabled?: boolean }) {
     return !object.disabled;
@@ -23,7 +23,7 @@
 </div>
 {#if typeof cv.about.contact !== "undefined"}
   {#each cv.about.contact as info}
-    <div class="inline-block pr-2 marked">{@html Marked(info)}</div>
+    <div class="inline-block pr-2 marked">{@html marked.parse(info)}</div>
   {/each}
 {/if}
 <div>
@@ -45,10 +45,10 @@
   {#each section.items.filter(checkEnabled) as item}
     <div class="pt-2 flex flex-wrap justify-between gap-1">
       <h3 class="inline marked" style="margin-bottom: -2px;" id={item.title}>
-        {@html Marked(item.title)}
+        {@html marked.parse(item.title)}
       </h3>
       {#if typeof item.subtitle !== "undefined"}
-        <strong class="marked mt-auto">- {@html Marked(item.subtitle)}</strong>
+        <strong class="marked mt-auto">- {@html marked.parse(item.subtitle)}</strong>
       {/if}
       <div class="flex-grow" />
       <strong class="mt-auto">
@@ -64,7 +64,7 @@
       </strong>
     </div>
     {#if typeof item.body !== "undefined"}
-      <div class="marked">{@html Marked(item.body)}</div>
+      <div class="marked">{@html marked.parse(item.body)}</div>
     {/if}
   {/each}
 {/each}

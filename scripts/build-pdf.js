@@ -9,10 +9,9 @@ async function pageCount(failureCallback, successCallback) {
   pdfParser.on("pdfParser_dataReady", async (data) => {
     const pageCount =
       data &&
-      data.formImage &&
-      data.formImage.Pages &&
-      data.formImage.Pages.length
-        ? data.formImage.Pages.length
+      data.Pages &&
+      data.Pages.length
+        ? data.Pages.length
         : 0;
     if (pageCount > parseInt(process.argv[2])) {
       failureCallback();
@@ -31,7 +30,7 @@ async function print(scale, subprocess) {
   });
   const page = await browser.newPage();
   // TODO: pull URL from stdout of dev command
-  await page.goto("http://localhost:3000");
+  await page.goto("http://localhost:5173");
 
   try {
     fs.accessSync("build");
@@ -62,7 +61,7 @@ async function print(scale, subprocess) {
 const subprocess = child_process.spawn("npm", ["run", "dev"]);
 let printBegun = false;
 subprocess.stdout.on("data", (data) => {
-  if (!printBegun && String(data).match(/> Local: http:\/\//g)) {
+  if (!printBegun && String(data).match(/Local: +http:\/\//g)) {
     printBegun = true;
     console.log("dev server started");
     print(1, subprocess);
