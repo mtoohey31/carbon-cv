@@ -26,7 +26,7 @@ async function pageCount(failureCallback, successCallback) {
 async function print(scale, subprocess) {
   // Kerning fix source: https://docs.browserless.io/blog/2020/09/30/puppeteer-print.html
   const browser = await puppeteer.launch({
-    executablePath: "/usr/bin/brave",
+    executablePath: "chromium",
     args: ["--font-render-hinting=none"],
   });
   const page = await browser.newPage();

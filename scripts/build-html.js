@@ -3,7 +3,7 @@ import fs from "fs";
 import child_process from "child_process";
 
 async function save(subprocess) {
-  const browser = await puppeteer.launch({ executablePath: "/usr/bin/brave" });
+  const browser = await puppeteer.launch({ executablePath: "chromium" });
   const page = await browser.newPage();
   // TODO: pull URL from stdout of dev command
   await page.goto("http://localhost:3000");
