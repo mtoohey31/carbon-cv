@@ -112,9 +112,9 @@ properties:
       required:
         - title
         - items
-  references:
+  footnote:
     type: string
-    description: The message to display regarding references
+    description: Note to display at the bottom
 required:
   - about
   - sections

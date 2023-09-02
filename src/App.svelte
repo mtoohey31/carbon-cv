@@ -68,10 +68,12 @@
     {/if}
   {/each}
 {/each}
-{#if typeof cv.references !== "undefined"}
-  <h3>References</h3>
+{#if typeof cv.footnote !== "undefined"}
+  <br />
   <hr />
-  {cv.references}
+  <p class="pt-4 pb-4">
+    {cv.footnote}
+  </p>
 {/if}
 
 <style global lang="postcss">
