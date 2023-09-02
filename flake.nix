@@ -10,11 +10,11 @@
     let
       pkgs = import nixpkgs { inherit system; };
       inherit (pkgs) chromium mkShell nodePackages;
-      inherit (nodePackages) pnpm;
+      inherit (nodePackages) pnpm prettier;
     in
     {
       devShells.default = mkShell {
-        packages = [ chromium pnpm ];
+        packages = [ chromium pnpm prettier ];
       };
     });
 }
