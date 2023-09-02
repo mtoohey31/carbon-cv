@@ -8,11 +8,7 @@ async function pageCount(failureCallback, successCallback) {
   let pdfParser = new pdf2json.default();
   pdfParser.on("pdfParser_dataReady", async (data) => {
     const pageCount =
-      data &&
-      data.Pages &&
-      data.Pages.length
-        ? data.Pages.length
-        : 0;
+      data && data.Pages && data.Pages.length ? data.Pages.length : 0;
     if (pageCount > parseInt(process.argv[2])) {
       failureCallback();
     } else {
@@ -53,7 +49,7 @@ async function print(scale, subprocess) {
       () => {
         subprocess.kill("SIGINT");
         console.log("dev server stopped");
-      }
+      },
     );
   }
 }

@@ -17,5 +17,5 @@ try {
 
 fs.writeFileSync(
   "types/generated/schema-type.ts",
-  await compile(schema, "Recipe")
+  await compile(schema, "Recipe"),
 );
