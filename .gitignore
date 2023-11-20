@@ -1,10 +1,6 @@
+/result
 /.direnv
 
-/node_modules/
-/dist/
-.DS_Store
-
-/cv.yaml
-/build
-
-/types/generated
+/carbon-cv
+/carboncv
+/schema.json
