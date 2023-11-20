@@ -1,3 +1,3 @@
-# carbon-cv
+# carbon-resume
 
-A tool for generating resumes from yaml. See `carbon-cv --help` for usage.
+A tool for generating resumes from yaml. See `carbon-resume --help` for usage.

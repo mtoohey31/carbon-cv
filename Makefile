@@ -1,4 +1,4 @@
-carbon-cv: main.go go.mod go.sum index.html.gotmpl schema.json
+carbon-resume: main.go go.mod go.sum index.html.gotmpl schema.json
 	go build -o $@ .
 
 schema.json: schema.yaml
@@ -6,4 +6,4 @@ schema.json: schema.yaml
 
 .PHONY: clean
 clean:
-	rm -f carbon-cv schema.json
+	rm -f carbon-resume schema.json

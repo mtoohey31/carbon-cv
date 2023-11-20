@@ -1,4 +1,4 @@
-module mtoohey.com/carboncv
+module mtoohey.com/carbonresume
 
 go 1.21.3
 

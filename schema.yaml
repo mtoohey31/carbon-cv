@@ -1,8 +1,8 @@
 # yaml-language-server: $schema=https://json-schema.org/draft/2020-12/schema
-$id: "https://raw.githubusercontent.com/mtoohey31/carbon-cv/main/schema.yaml"
+$id: "https://raw.githubusercontent.com/mtoohey31/carbon-resume/main/schema.yaml"
 additionalProperties: false
-title: CV
-description: A CV to be loaded by carbon-cv
+title: Resume
+description: A resume to be loaded by carbon-resume
 type: object
 properties:
   about:
@@ -50,12 +50,12 @@ properties:
       - name
   sections:
     type: array
-    description: The sections to include in the CV
+    description: The sections to include in the resume
     uniqueItems: true
     exclusiveMinimum: 0
     items:
       type: object
-      description: A CV section
+      description: A resume section
       additionalProperties: false
       properties:
         title:
