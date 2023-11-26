@@ -77,8 +77,12 @@
 
       body {
         background-color: rgb(255 255 255);
-        margin: 2rem;
+        margin: 0;
+        padding: 2rem;
         font-size: 0.875rem;
+      }
+
+      .zoomed {
         line-height: 1.25rem;
       }
 
@@ -142,78 +146,106 @@
           margin: 0;
         }
       }
+
+      .measure {
+        top: 0;
+        left: 0;
+        position: absolute;
+        opacity: 0;
+      }
     </style>
+    <script>
+      window.onload = () => {
+        const height = new URLSearchParams(window.location.search).get("height");
+        if (height === null)
+          return;
+
+        document.styleSheets[0].insertRule(`.measure { height: ${height}; }`);
+        document.styleSheets[0].insertRule("body { padding-bottom: 0 !important; }");
+
+        let body = document.body;
+        let measure = document.querySelector(".measure");
+        document.styleSheets[0].insertRule(".zoomed { zoom: 1.0; }");
+        for (let zoom = 1.0; body.clientHeight > measure.clientHeight; zoom -= 0.001) {
+          document.styleSheets[0].removeRule();
+          document.styleSheets[0].insertRule(`.zoomed { zoom: ${zoom}; }`);
+        }
+      };
+    </script>
   </head>
   <body>
-    <div style="padding-bottom: 1rem;">
-      <h1 style="display: inline;">{{ .about.name }}</h1>
-      {{- if .about.title }}
-      <h2 style="display: inline; padding-left: 1.5rem;">
-        <strong>{{ .about.title }}</strong>
-      </h2>
-      {{- end }}
-    </div>
-    {{- if .about.contact }}
-      {{- range $info := .about.contact -}}
-    <div class="markdown" style="display: inline-block; padding-right: 0.5rem;">
-      {{ markdown $info }}
-    </div>
-      {{- end }}
-    {{- end }}
-    <div>
-    {{- range $list := .about.lists }}
-      {{- if not $list.disabled -}}
-      <div style="display: inline-block; padding-right: 0.5rem;">
-        <strong>{{ $list.label }}:</strong>
-        {{ join $list.items ", " }}
+    <div class="measure"></div>
+    <div class="zoomed">
+      <div style="padding-bottom: 1rem;">
+        <h1 style="display: inline;">{{ .about.name }}</h1>
+        {{- if .about.title }}
+        <h2 style="display: inline; padding-left: 1.5rem;">
+          <strong>{{ .about.title }}</strong>
+        </h2>
+        {{- end }}
       </div>
+      {{- if .about.contact }}
+        {{- range $info := .about.contact -}}
+      <div class="markdown" style="display: inline-block; padding-right: 0.5rem;">
+        {{ markdown $info }}
+      </div>
+        {{- end }}
       {{- end }}
-    {{- end }}
-    </div>
-    {{- if .about.summary }}
-      <h2>Summary</h2>
+      <div>
+      {{- range $list := .about.lists }}
+        {{- if not $list.disabled -}}
+        <div style="display: inline-block; padding-right: 0.5rem;">
+          <strong>{{ $list.label }}:</strong>
+          {{ join $list.items ", " }}
+        </div>
+        {{- end }}
+      {{- end }}
+      </div>
+      {{- if .about.summary }}
+        <h2>Summary</h2>
+        <hr />
+        {{ .about.summary }}
+      {{- end }}
+      {{- range $section := .sections }}
+        {{- if hasEnabledItems $section }}
+      <h2 id="{{ $section.title }}">{{ $section.title }}</h2>
       <hr />
-      {{ .about.summary }}
-    {{- end }}
-    {{- range $section := .sections }}
-      {{- if hasEnabledItems $section }}
-    <h2 id="{{ $section.title }}">{{ $section.title }}</h2>
-    <hr />
-        {{- range $item := $section.items }}
-          {{- if not $item.disabled }}
-    <div style="padding-top: 0.5rem; display: flex; gap: 0.25rem;">
-      <h3 class="markdown" style="margin-bottom: -2px;" id="{{ $item.title }}">
-        {{ markdown $item.title }}
-      </h3>
-            {{- if $item.subtitle }}
-      <strong class="markdown" style="margin-top: auto;">- {{ markdown $item.subtitle }}</strong>
-            {{- end }}
-      <div style="flex-grow: 1;"></div>
-      <strong style="margin-top: auto;">
-            {{- if isString $item.date }}
-        {{ $item.date }}
-            {{- else if $item.date }}
-              {{- if $item.date.end }}
-        {{ $item.date.start }} - {{ $item.date.end }}
-              {{- else }}
-        {{ $item.date.start }} - Present
+          {{- range $item := $section.items }}
+            {{- if not $item.disabled }}
+      <div style="padding-top: 0.5rem; display: flex; gap: 0.25rem;">
+        <h3 class="markdown" style="margin-bottom: -2px;" id="{{ $item.title }}">
+          {{ markdown $item.title }}
+        </h3>
+              {{- if $item.subtitle }}
+        <strong class="markdown" style="margin-top: auto;">- {{ markdown $item.subtitle }}</strong>
               {{- end }}
-            {{- end }}
-      </strong>
-    </div>
-            {{- if $item.body }}
-    <div class="markdown">{{ markdown $item.body }}</div>
+        <div style="flex-grow: 1;"></div>
+        <strong style="margin-top: auto;">
+              {{- if isString $item.date }}
+          {{ $item.date }}
+              {{- else if $item.date }}
+                {{- if $item.date.end }}
+          {{ $item.date.start }} - {{ $item.date.end }}
+                {{- else }}
+          {{ $item.date.start }} - Present
+                {{- end }}
+              {{- end }}
+        </strong>
+      </div>
+              {{- if $item.body }}
+      <div class="markdown">{{ markdown $item.body }}</div>
+              {{- end }}
             {{- end }}
           {{- end }}
         {{- end }}
       {{- end }}
-    {{- end }}
-    {{- if .footnote }}
-    <br />
-    <hr />
-    <p style="padding-top: 1rem; padding-bottom: 1rem;">
-      {{ .footnote }}
-    </p>
-    {{- end }}
+      {{- if .footnote }}
+      <br />
+      <hr />
+      <p style="padding-top: 1rem; padding-bottom: 1rem;">
+        {{ .footnote }}
+      </p>
+      {{- end }}
+    </div>
   </body>
 </html>
