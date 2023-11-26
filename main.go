@@ -6,9 +6,9 @@ import (
 	_ "embed"
 	"encoding/json"
 	"fmt"
+	"html/template"
 	"os"
 	"strings"
-	"text/template"
 
 	"github.com/alecthomas/kong"
 	"github.com/qri-io/jsonschema"
@@ -114,13 +114,13 @@ func main() {
 
 			return false, nil
 		},
-		"markdown": func(s string) (string, error) {
+		"markdown": func(s string) (template.HTML, error) {
 			source := []byte(s)
 			doc := markdown.Parser().Parse(text.NewReader(source))
 
 			var b bytes.Buffer
 			err := markdown.Renderer().Render(&b, source, doc)
-			return strings.TrimSpace(b.String()), err
+			return template.HTML(strings.TrimSpace(b.String())), err
 		},
 	})
 	tmpl, err = tmpl.Parse(templateString)
